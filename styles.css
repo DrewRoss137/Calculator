@@ -1,0 +1,65 @@
+html {
+    scroll-behavior: smooth;
+}
+  
+html,
+body,
+main {
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    width: 100%;
+}
+  
+body {
+    background: radial-gradient(circle, #4b4b4b, rgba(0, 0, 0, 1));
+    color: rgba(255, 255, 255, 1);
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+  
+#body {
+    flex-direction: column;
+}
+  
+body,
+#header,
+#header-text {
+    margin: 0;
+}
+  
+body,
+#header {
+    padding: 0;
+}
+
+#header-text {
+    font-size: 72px;
+    padding: 16px;
+    text-shadow: 0px 0px 6px rgba(0, 0, 0, 1), 0px 0px 12px rgba(0, 0, 0, 1),
+    0px 0px 18px rgba(0, 0, 0, 1), 0px 0px 10px rgba(0, 0, 0, 1),
+    0px 0px 24px rgba(0, 0, 0, 1);
+}
+
+#header,
+#footer {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#footer {
+    justify-content: flex-end;
+    width: 100%;
+}
+  
+#github-logo {
+    filter: invert(3%);
+    height: 33px;
+    max-height: 33px;
+    max-width: 32px;
+    padding-bottom: 16px;
+    padding-left: 0px;
+    padding-right: 16px;
+    padding-top: 0px;
+    width: 32px;
+}
