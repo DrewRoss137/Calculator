@@ -1,4 +1,5 @@
 html {
+    position: relative;
     scroll-behavior: smooth;
 }
   
@@ -7,7 +8,9 @@ body,
 main {
     height: 100%;
     max-height: 100%;
+    min-height: 100%;
     max-width: 100%;
+    min-width: 100%;
     width: 100%;
 }
   
@@ -15,6 +18,7 @@ body {
     background: radial-gradient(circle, #4b4b4b, rgba(0, 0, 0, 1));
     color: rgba(255, 255, 255, 1);
     font-family: "Roboto", Arial, Helvetica, sans-serif;
+    margin-bottom: 100px;
 }
   
 #body {
@@ -22,17 +26,24 @@ body {
 }
   
 body,
-#header,
-#header-text {
+header,
+h1 {
     margin: 0;
 }
   
 body,
-#header {
+header {
     padding: 0;
 }
 
-#header-text {
+header,
+footer {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
     font-size: 72px;
     padding: 16px;
     text-shadow: 0px 0px 6px rgba(0, 0, 0, 1), 0px 0px 12px rgba(0, 0, 0, 1),
@@ -40,14 +51,10 @@ body,
     0px 0px 24px rgba(0, 0, 0, 1);
 }
 
-#header,
-#footer {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-
-#footer {
+footer {
+    bottom: 0;
+    left: 0;
+    position: fixed;
     justify-content: flex-end;
     width: 100%;
 }
