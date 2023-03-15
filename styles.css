@@ -1,5 +1,4 @@
 html {
-    position: relative;
     scroll-behavior: smooth;
 }
   
@@ -8,17 +7,19 @@ body,
 main {
     height: 100%;
     max-height: 100%;
-    min-height: 100%;
     max-width: 100%;
-    min-width: 100%;
     width: 100%;
+}
+
+html,
+button {
+    color: rgba(255, 255, 255, 1);
 }
   
 body {
-    background: radial-gradient(circle, #4b4b4b, rgba(0, 0, 0, 1));
-    color: rgba(255, 255, 255, 1);
+    background: radial-gradient(circle, rgba(50, 50, 50, 1), rgba(0, 0, 0, 1));
+    flex-direction: column;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
-    margin-bottom: 100px;
 }
 
 body,
@@ -28,61 +29,78 @@ h1 {
 }
 
 body,
-header,
-#calculator,
-buttons {
+header {
     padding: 0;
 }
-  
-#body {
-    flex-direction: column;
-    margin-bottom: 16px;
-    margin-top: 16px;
-}
-  
+ 
 #body,
-#buttons,
 header,
 #calculator,
+#display,
+#buttons,
 footer {
     align-items: center;
     display: flex;
     justify-content: center;
 }
 
+header,
+h1,
+#calculator {
+    padding: 16px;
+}
+
 h1 {
     font-size: 72px;
-    padding: 16px;
     text-shadow: 0px 0px 6px rgba(0, 0, 0, 1), 0px 0px 12px rgba(0, 0, 0, 1),
     0px 0px 18px rgba(0, 0, 0, 1), 0px 0px 10px rgba(0, 0, 0, 1),
     0px 0px 24px rgba(0, 0, 0, 1);
 }
 
 #calculator {
-    background: radial-gradient(circle, rgba(120, 120, 120, 1) 0%, rgba(0, 0, 0, 1) 125%);
-    border-color: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(160deg, rgba(50, 50, 50, 1) 0%, rgba(0, 0, 0, 1) 125%);
+    border-color: rgba(255, 255, 255, 0.02);
+    border-image: linear-gradient(to top, rgb(0, 0, 0)transparent) 1;
     border-radius: 20px;
     border-style: solid;
-    border-width: 3px;
-    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 1),
-    0px 0px 20px 20px rgba(0, 0, 0, 0.5);
+    border-width: 2px;
+    box-shadow: 
+    0px 10px 20px rgba(0, 0, 0, 0.5),
+    0px 20px 40px rgba(0, 0, 0, 0.3),
+    inset 0px 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0px -2px 4px rgba(0, 0, 0, 0.2);
     flex-direction: column;
     gap: 32px;
     height: 750px;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 24px;
+    padding-right: 24px;
     width: 550px;
 }
 
-#display {
-    background-color: rgba(255, 255, 255, 1);
-    border-radius: 20px;
-    border-color: rgba(255, 255, 255, 1);
+#calculator,
+#display,
+button {
     border-radius: 20px;
     border-style: solid;
     border-width: 3px;
+}
+
+
+#display {
+    border-color: rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0px 0px 10px rgb(0, 0, 0);
+    font-size: 88px;
     height: 124px;
-    width: 544px;
+    justify-content: flex-end;
+    padding: 8px;
+    width: 524px;
+}
+
+#display,
+button {
+    background: radial-gradient(circle, rgb(25, 25, 25) 0%, rgba(0, 0, 0, 1) 125%);
+    border-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
 #buttons {
@@ -91,7 +109,9 @@ h1 {
 }
 
 button {
-    border-radius: 20px;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: bolder;
     height: 100px;
     width: 100px;
 }
