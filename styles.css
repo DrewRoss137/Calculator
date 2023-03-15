@@ -28,7 +28,9 @@ h1 {
 }
 
 body,
-header {
+header,
+#calculator,
+buttons {
     padding: 0;
 }
   
@@ -79,8 +81,8 @@ h1 {
     border-radius: 20px;
     border-style: solid;
     border-width: 3px;
-    height: 125px;
-    width: 500px;
+    height: 124px;
+    width: 544px;
 }
 
 #buttons {
@@ -89,6 +91,7 @@ h1 {
 }
 
 button {
+    border-radius: 20px;
     height: 100px;
     width: 100px;
 }
