@@ -9,6 +9,7 @@ buttons.addEventListener("click", (event) => {
     const target = event.target;
     const isDigitButton = target.classList.contains("digit-buttons");
     const isOperatorButton = target.classList.contains("operator-buttons");
+    const isDecimalButton = target === decimalPointButton;
     if (isDigitButton) {
         currentInput += target.textContent;
         display.textContent += target.textContent;
@@ -29,6 +30,16 @@ buttons.addEventListener("click", (event) => {
     }
 });
 
+const exponentButton = document.getElementById("exponent-button");
+
+const factorialButton = document.getElementById("factorial-button");
+
+const percentButton = document.getElementById("percent-button");
+
+const colourButton = document.getElementById("colour-button");
+
+const powerButton = document.getElementById("power-button");
+
 const deleteButton = document.getElementById("delete-button");
 deleteButton.addEventListener("click", () => {
     backspace();
@@ -38,6 +49,18 @@ const allClearButton = document.getElementById("all-clear-button");
 allClearButton.addEventListener("click", () => {
     clearDisplay();
 });  
+
+const decimalPointButton = document.getElementById("decimal-point-button");
+decimalPointButton.addEventListener("click", () => {
+    if (!currentInput.includes(".")) {
+        currentInput += ".";
+        display.textContent += ".";
+    }
+});
+
+const signButton = document.getElementById("sign-button");
+
+const answerButton = document.getElementById("answer-button");
 
 const equalsButton = document.getElementById("equals-button");
 equalsButton.addEventListener("click", () => {
@@ -82,7 +105,6 @@ function evaluateExpression(a, b, operator) {
             return a * b;
         case "÷":
             if (b === 0) {
-                display.textContent = "Can't divide by 0!";
                 return a;
             }
             return a / b;
