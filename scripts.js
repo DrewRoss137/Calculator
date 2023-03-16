@@ -26,10 +26,14 @@ const eightButton = document.getElementById("eight-button");
 const nineButton = document.getElementById("nine-button");
 
 const deleteButton = document.getElementById("delete-button");
-deleteButton.addEventListener("click", backspace());
+deleteButton.addEventListener("click", () => {
+    backspace();
+});
 
 const allClearButton = document.getElementById("all-clear-button");
-allClearButton.addEventListener("click", clearDisplay());
+allClearButton.addEventListener("click", () => {
+    clearDisplay();
+});  
 
 const fourButton = document.getElementById("four-button");
 
@@ -70,5 +74,5 @@ function backspace() {
 }
 
 function clearDisplay() {
-    display.textcontent = "";
+    display.textContent = "";
 }
