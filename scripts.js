@@ -7,6 +7,16 @@ const display = document.getElementById("display");
 
 const buttons = document.getElementById("buttons");
 buttons.addEventListener("click", (event) => {
+    // Check if power button is on
+    const powerButton = document.getElementById("power-button");
+    if (powerButton.classList.contains("off")) {
+        display.textContent = "";
+        currentInput = "";
+        previousInput = "";
+        currentOperator = "";
+        return;
+    }
+
     const target = event.target;
     const isDigitButton = target.classList.contains("digit-buttons");
     const isOperatorButton = target.classList.contains("operator-buttons");
@@ -63,8 +73,14 @@ percentButton.addEventListener("click", () => {
 });
 
 const colourButton = document.getElementById("colour-button");
+colourButton.addEventListener("click", () => {
+    toggleCalculatorColor();
+});
 
 const powerButton = document.getElementById("power-button");
+powerButton.addEventListener("click", () => {
+    togglePowerButtonStyle();
+});
 
 const deleteButton = document.getElementById("delete-button");
 deleteButton.addEventListener("click", backspace);
@@ -169,3 +185,46 @@ function factorial(n) {
     if (n === 0 || n === 1) return 1;
     return n * factorial(n - 1);
 };
+
+function toggleCalculatorColor() {
+  const calculator = document.querySelector(".calculator");
+  const buttons = document.querySelectorAll("#buttons button");
+  const colorButton = document.querySelector("#colour-button");
+
+  calculator.classList.toggle("light");
+  if (calculator.classList.contains("light")) {
+    buttons.forEach(button => {
+      button.style.backgroundColor = "#fff";
+      button.style.color = "#000";
+    });
+    colorButton.style.backgroundColor = "#fff";
+    colorButton.style.color = "#000";
+  } else {
+    buttons.forEach(button => {
+      button.style.backgroundColor = "";
+      button.style.color = "";
+    });
+    colorButton.style.backgroundColor = "";
+    colorButton.style.color = "";
+  }
+}
+
+function togglePowerButtonStyle() {
+    const powerButton = document.getElementById("power-button");
+    if (powerButton.classList.contains("on")) {
+        powerButton.classList.remove("on");
+        powerButton.classList.add("off");
+    } else {
+        powerButton.classList.remove("off");
+        powerButton.classList.add("on");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    setPowerButtonOn();
+});
+
+function setPowerButtonOn() {
+    const powerButton = document.getElementById("power-button");
+    powerButton.classList.add("on");
+}
