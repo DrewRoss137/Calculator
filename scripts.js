@@ -3,8 +3,15 @@ const display = document.getElementById("display");
 const buttons = document.getElementById("buttons");
 buttons.addEventListener("click", (event) => {
     const target = event.target;
-    const digitButtons = target.classList.contains("digit-buttons");
-    if (digitButtons) {
+    const isDigitButton = target.classList.contains("digit-buttons");
+    const isOperatorButton = target.classList.contains("operator-buttons");
+    if (isDigitButton || isOperatorButton) {
+        if (isOperatorButton) {
+            const lastChar = display.textContent.slice(-1);
+            if (isOperator(lastChar)) {
+                backspace();
+            }
+        }
         appendDisplay(target.textContent);
     }
 });
@@ -75,4 +82,9 @@ function backspace() {
 
 function clearDisplay() {
     display.textContent = "";
+}
+
+function isOperator(char) {
+    const operators = ['+', '–', 'x', '÷'];
+    return operators.includes(char);
 }
