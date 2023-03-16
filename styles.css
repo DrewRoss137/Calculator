@@ -38,6 +38,7 @@ header,
 #calculator,
 #display,
 #buttons,
+button,
 footer {
     align-items: center;
     display: flex;
@@ -60,7 +61,7 @@ h1 {
 #calculator {
     background: linear-gradient(160deg, rgba(50, 50, 50, 1) 0%, rgba(0, 0, 0, 1) 125%);
     border-color: rgba(255, 255, 255, 0.02);
-    border-image: linear-gradient(to top, rgb(0, 0, 0)transparent) 1;
+    border-image: linear-gradient(to top, rgba(0, 0, 0, 1)transparent) 1;
     border-radius: 20px;
     border-style: solid;
     box-shadow: 
@@ -87,7 +88,7 @@ button {
 
 #display {
     border-color: rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0px 0px 10px rgb(0, 0, 0);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 1);
     font-size: 88px;
     height: 124px;
     justify-content: flex-end;
@@ -98,7 +99,7 @@ button {
 #display,
 .digit-buttons,
 .miscellaneous-buttons {
-    background: radial-gradient(circle, rgb(25, 25, 25) 0%, rgba(0, 0, 0, 1) 125%);
+    background: radial-gradient(circle, rgba(25, 25, 25, 1) 0%, rgba(0, 0, 0, 1) 125%);
     border-color: rgba(0, 0, 0, 0.5);
     text-align: center;
 }
@@ -114,8 +115,9 @@ button {
     border-style: solid;
     border-width: 2px;
     box-shadow: 
-    inset 0px 0px 2px rgba(255, 255, 255, 0.2),
-    inset 0px 0px 2px rgba(0, 0, 0, 0.4);
+    inset 2px 2px 4px rgba(0, 0, 0, 0.4),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.2),
+    2px 2px 4px rgba(0, 0, 0, 1);
     cursor: pointer;
     font-size: 25px;
     font-weight: bolder;
@@ -129,13 +131,13 @@ button {
 button:active {
     box-shadow:
     inset 0px 0px 2px rgba(0, 0, 0, 0.5),
-    inset 0px 0px 2px rgba(255, 255, 255, 0.5),
+    inset 0px 0px 2px rgba(0, 0, 0, 0.5),
     inset 0px 0px 2px rgba(0, 0, 0, 0.5);
-    transform: translateY(1px);
+    transform: translateY(2px);
 }
 
 .function-buttons {
-    background: radial-gradient(circle, rgb(200, 255, 200) 0%, rgb(150, 255, 150) 125%);
+    background: radial-gradient(circle, rgba(200, 255, 200, 1) 0%, rgba(150, 255, 150, 1) 125%);
 }
 
 .function-buttons,
@@ -154,7 +156,8 @@ button:active {
 }
 
 .miscellaneous-buttons {
-    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(120, 120, 120, 1) 125%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(60, 60, 60, 1) 125%);
+    font-size: 20px;
 }
 
 .rescind-buttons {
