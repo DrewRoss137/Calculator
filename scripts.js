@@ -33,6 +33,38 @@ buttons.addEventListener("click", (event) => {
     }
 });
 
+const exponentButton = document.getElementById("exponent-button");
+exponentButton.addEventListener("click", () => {
+    if (currentInput) {
+        currentOperator = "^";
+        previousInput = currentInput;
+        currentInput = "";
+        display.textContent += "^";
+    }
+});
+
+const factorialButton = document.getElementById("factorial-button");
+factorialButton.addEventListener("click", () => {
+    if (currentInput) {
+        const result = factorial(parseInt(currentInput));
+        currentInput = result.toString();
+        display.textContent = roundResult(result);
+    }
+});
+
+const percentButton = document.getElementById("percent-button");
+percentButton.addEventListener("click", () => {
+    if (currentInput) {
+        const result = parseFloat(currentInput) / 100;
+        currentInput = result.toString();
+        display.textContent = roundResult(result);
+    }
+});
+
+const colourButton = document.getElementById("colour-button");
+
+const powerButton = document.getElementById("power-button");
+
 const deleteButton = document.getElementById("delete-button");
 deleteButton.addEventListener("click", backspace);
 
@@ -111,4 +143,19 @@ function updateDisplay() {
     } else {
         display.textContent = currentInput;
     }
+};
+
+function evaluateExpression(a, b, operator) {
+    a = parseFloat(a);
+    b = parseFloat(b);
+    if (operator === "+") return a + b;
+    if (operator === "–") return a - b;
+    if (operator === "x") return a * b;
+    if (operator === "÷") return (b === 0) ? a : a / b;
+    if (operator === "^") return Math.pow(a, b);
+};
+
+function factorial(n) {
+    if (n === 0 || n === 1) return 1;
+    return n * factorial(n - 1);
 };
