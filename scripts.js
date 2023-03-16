@@ -1,6 +1,7 @@
 let currentInput = "";
-let previousInput = "";
 let currentOperator = "";
+let lastResult = "";
+let previousInput = "";
 
 const display = document.getElementById("display");
 
@@ -82,14 +83,23 @@ decimalPointButton.addEventListener("click", () => {
 const signButton = document.getElementById("sign-button");
 signButton.addEventListener("click", toggleSign);
 
+const answerButton = document.getElementById("answer-button");
+answerButton.addEventListener("click", () => {
+    if (lastResult !== null) {
+        currentInput += lastResult.toString();
+        display.textContent += lastResult.toString();
+    }
+});
+
 const equalsButton = document.getElementById("equals-button");
 equalsButton.addEventListener("click", () => {
     if (previousInput && currentOperator && currentInput) {
         const result = evaluateExpression(previousInput, currentInput, currentOperator);
-        display.textContent = roundResult(result);
+        display.innerHTML = roundResult(result);
         currentInput = result.toString();
         previousInput = "";
         currentOperator = "";
+        lastResult = result;
     }
 });
 
