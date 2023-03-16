@@ -133,6 +133,16 @@ button:active {
     transform: translateY(1px);
 }
 
+.number-buttons,
+.modifier-buttons,
+.operator-buttons {
+    font-size: 72px;
+}
+
+.miscellaneous-buttons {
+    font-size: 38px;
+}
+
 footer {
     bottom: 0;
     left: 0;
