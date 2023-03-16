@@ -9,8 +9,11 @@ buttons.addEventListener("click", (event) => {
     const target = event.target;
     const isDigitButton = target.classList.contains("digit-buttons");
     const isOperatorButton = target.classList.contains("operator-buttons");
-    const isDecimalButton = target === decimalPointButton;
-    if (isDigitButton) {
+
+    if (isDigitButton || target === decimalPointButton) {
+        if (target === decimalPointButton && currentInput.includes(".")) {
+            return;
+        }
         currentInput += target.textContent;
         display.textContent += target.textContent;
     } else if (isOperatorButton) {
@@ -30,25 +33,11 @@ buttons.addEventListener("click", (event) => {
     }
 });
 
-const exponentButton = document.getElementById("exponent-button");
-
-const factorialButton = document.getElementById("factorial-button");
-
-const percentButton = document.getElementById("percent-button");
-
-const colourButton = document.getElementById("colour-button");
-
-const powerButton = document.getElementById("power-button");
-
 const deleteButton = document.getElementById("delete-button");
-deleteButton.addEventListener("click", () => {
-    backspace();
-});
+deleteButton.addEventListener("click", backspace);
 
 const allClearButton = document.getElementById("all-clear-button");
-allClearButton.addEventListener("click", () => {
-    clearDisplay();
-});  
+allClearButton.addEventListener("click", clearDisplay);
 
 const decimalPointButton = document.getElementById("decimal-point-button");
 decimalPointButton.addEventListener("click", () => {
@@ -59,8 +48,7 @@ decimalPointButton.addEventListener("click", () => {
 });
 
 const signButton = document.getElementById("sign-button");
-
-const answerButton = document.getElementById("answer-button");
+signButton.addEventListener("click", toggleSign);
 
 const equalsButton = document.getElementById("equals-button");
 equalsButton.addEventListener("click", () => {
@@ -72,10 +60,6 @@ equalsButton.addEventListener("click", () => {
         currentOperator = "";
     }
 });
-
-function appendDisplay(value) {
-    display.textContent += value;
-};
 
 function backspace() {
     display.textContent = display.textContent.slice(0, -1);
@@ -96,21 +80,35 @@ function isOperator(char) {
 function evaluateExpression(a, b, operator) {
     a = parseFloat(a);
     b = parseFloat(b);
-    switch (operator) {
-        case "+":
-            return a + b;
-        case "–":
-            return a - b;
-        case "x":
-            return a * b;
-        case "÷":
-            if (b === 0) {
-                return a;
-            }
-            return a / b;
-    }
+    if (operator === "+") return a + b;
+    if (operator === "–") return a - b;
+    if (operator === "x") return a * b;
+    if (operator === "÷") return (b === 0) ? a : a / b;
 };
 
 function roundResult(value) {
     return Math.round(value * 1000000) / 1000000;
+};
+
+function toggleSign() {
+    if (currentInput === "") {
+        currentInput = "-";
+        display.textContent += "-";
+    } else if (currentInput === "-") {
+        currentInput = "";
+        backspace();
+    } else {
+        currentInput = (parseFloat(currentInput) * -1).toString();
+        updateDisplay();
+    }
+};
+
+function updateDisplay() {
+    if (previousInput && currentOperator) {
+        display.textContent = previousInput + currentOperator + currentInput;
+    } else if (previousInput) {
+        display.textContent = previousInput;
+    } else {
+        display.textContent = currentInput;
+    }
 };
