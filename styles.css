@@ -1,4 +1,5 @@
 html {
+    color: rgba(255, 255, 255, 1);
     scroll-behavior: smooth;
 }
   
@@ -6,18 +7,11 @@ html,
 body,
 main {
     height: 100%;
-    max-height: 100%;
-    max-width: 100%;
     width: 100%;
 }
-
-html,
-button {
-    color: rgba(255, 255, 255, 1);
-}
   
-body {
-    background: radial-gradient(circle, rgba(50, 50, 50, 1), rgba(0, 0, 0, 1));
+body,
+#calculator {
     flex-direction: column;
 }
 
@@ -36,6 +30,17 @@ body,
 button {
     font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
+
+body,
+#calculator,
+#display,
+.miscellaneous-buttons,
+.digit-buttons {
+    background-image: radial-gradient(circle at center, rgba(50, 50, 50, 1), rgba(0, 0, 0, 1));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
  
 #body,
 header,
@@ -51,40 +56,64 @@ footer {
 
 header,
 h1,
-#calculator {
+#calculator,
+#display {
     padding: 16px;
 }
 
-h1 {
-    font-size: 72px;
-    text-shadow: 0px 0px 6px rgba(0, 0, 0, 1), 0px 0px 12px rgba(0, 0, 0, 1),
-    0px 0px 18px rgba(0, 0, 0, 1), 0px 0px 10px rgba(0, 0, 0, 1),
-    0px 0px 24px rgba(0, 0, 0, 1);
+h1,
+#display,
+.miscellaneous-buttons,
+.digit-buttons {
+    color: rgba(255, 255, 255, 1);
 }
 
-.calculator {
-    background: linear-gradient(160deg, rgba(50, 50, 50, 1) 0%, rgba(0, 0, 0, 1) 125%);
-    border-color: rgba(255, 255, 255, 0.02);
+h1,
+#display,
+.function-buttons,
+.digit-buttons {
+    font-size: 72px;
+}
+
+h1,
+#display,
+.digit-buttons {
+    text-shadow: 0px 0px 3px rgba(255, 255, 255, 1),
+    0px 0px 3px rgba(255, 255, 255, 1),
+    0px 0px 3px rgba(255, 255, 255, 1),
+    0px 0px 3px rgba(255, 255, 255, 1),
+    0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1);
+}
+
+#calculator {
+    border-color: rgba(255, 255, 255, 0.05);
     border-image: linear-gradient(to top, rgba(0, 0, 0, 1)transparent) 1;
-    border-radius: 20px;
-    border-style: solid;
     box-shadow: 
-    0px 10px 20px rgba(0, 0, 0, 0.5),
-    0px 20px 40px rgba(0, 0, 0, 0.3),
-    inset 0px 2px 4px rgba(255, 255, 255, 0.1),
-    inset 0px -2px 4px rgba(0, 0, 0, 0.2);
-    flex-direction: column;
+    0px 0px 10px rgba(0, 0, 0, 1),
+    0px 0px 10px rgba(0, 0, 0, 1),
+    inset 0px -2px 4px rgba(0, 0, 0, 0.1),
+    inset 0px 2px 4px rgba(255, 255, 255, 0.1);
     gap: 32px;
     height: 750px;
     padding-left: 24px;
     padding-right: 24px;
     width: 550px;
 }
-  
-.calculator.light {
-    background: linear-gradient(160deg, rgba(200, 200, 200, 1) 0%, rgba(150, 150, 150, 1) 125%);
-}
 
+#calculator,
+#display,
+.miscellaneous-buttons,
+.digit-buttons {
+    background: radial-gradient(circle, rgba(50, 50, 50, 1) 0%, rgba(0, 0, 0, 1) 125%);
+}
+  
 #calculator,
 #display,
 button {
@@ -93,80 +122,16 @@ button {
     border-width: 3px;
 }
 
-
 #display {
-    border-color: rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 1);
-    font-size: 88px;
-    height: 124px;
-    justify-content: flex-end;
-    padding: 16px;
-    width: 524px;
-    border-color: rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 0, 0, 1);
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 1);
     font-size: 88px;
     height: 124px;
     justify-content: flex-end;
     overflow: hidden;
-    padding: 16px;
     text-align: right;
-    width: 524px;
     white-space: nowrap;
-}
-
-#display,
-button {
-    text-shadow: 0px 0px 3px rgba(255, 255, 255, 1);
-}
-
-.dark-theme-colour-button {
-    background-color: #000;
-    color: #fff;
-}
-
-.dark-theme-colour-button {
-    background-color: #000;
-    color: #fff;
-}
-  
-.light-theme-colour-button {
-    background-color: #fff;
-    color: #000;
-}
-
-.dark-theme-button {
-    background-color: #000;
-    color: #fff;
-}
-  
-.light-theme-button {
-    background-color: #fff;
-    color: #000;
-}
-
-.dark-theme-color-button {
-    color: #fff;
-}
-  
-.light-theme-color-button {
-    color: #000;
-}
-
-.light-display {
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-.dark-display {
-    background-color: #333;
-    color: #f0f0f0;
-}
-
-
-#display {
-
-    border-color: rgba(0, 0, 0, 0.5);
-    text-align: center;
+    width: 512px;
 }
 
 #buttons {
@@ -175,14 +140,16 @@ button {
 }
 
 button {
-    border-color: rgba(128, 128, 128, 0.3);
+    border-color: rgba(128, 128, 128, 0.2);
     border-radius: 10px;
     border-style: solid;
     border-width: 2px;
-    box-shadow: 
-    inset 2px 2px 4px rgba(0, 0, 0, 0.4),
-    inset -2px -2px 4px rgba(0, 0, 0, 0.2),
-    2px 2px 4px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 1),
+    0px 0px 3px rgba(0, 0, 0, 1),
+    0px 0px 3px rgba(0, 0, 0, 1),
+    0px 0px 3px rgba(0, 0, 0, 1),
+    inset 0px 0px 3px rgba(0, 0, 0, 0.5),
+    inset 0px 0px 3px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     font-size: 25px;
     font-weight: bolder;
@@ -193,10 +160,12 @@ button {
 }
 
 button:active {
-    box-shadow:
-    inset 0px 0px 2px rgba(0, 0, 0, 0.5),
-    inset 0px 0px 2px rgba(0, 0, 0, 0.5),
-    inset 0px 0px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 1),
+    0px 0px 4px rgba(0, 0, 0, 1),
+    0px 0px 4px rgba(0, 0, 0, 1),
+    0px 0px 4px rgba(0, 0, 0, 1),
+    inset 0px 0px 5px rgba(0, 0, 0, 1),
+    inset 0px 0px 5px rgba(0, 0, 0, 1);
     transform: translateY(2px);
 }
 
@@ -210,25 +179,16 @@ button:active {
 .modifier-buttons,
 .answer-buttons {
     color: rgba(0, 0, 0, 1);
-    text-shadow: 0px 0px 3px rgba(0, 0, 0, 1), 0px 0px 3px rgba(0, 0, 0, 1), 0px 0px 2px rgba(0, 0, 0, 1), 0px 0px 2px rgba(0, 0, 0, 1);
-}
-
-.function-buttons,
-.digit-buttons {
-    font-size: 72px;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 1),
+    0px 0px 3px rgba(0, 0, 0, 1),
+    0px 0px 3px rgba(0, 0, 0, 1),
+    0px 0px 3px rgba(0, 0, 0, 1);
 }
 
 .miscellaneous-buttons {
-    font-size: 20px;
-}
-
-
-#power-button.on {
-    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(0, 255, 0, 1) 125%);
-}
-
-#power-button.off {
-    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 0, 0, 1) 125%);
+    font-size: 22px;
+    text-shadow: 0px 0px 3px rgba(255, 255, 255, 1),
+    0px 0px 3px rgba(255, 255, 255, 1);
 }
 
 .rescind-buttons {
@@ -270,8 +230,6 @@ footer {
 #github-logo {
     filter: invert(3%);
     height: 33px;
-    max-height: 33px;
-    max-width: 32px;
     padding-bottom: 16px;
     padding-left: 0px;
     padding-right: 16px;
