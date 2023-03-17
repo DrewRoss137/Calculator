@@ -2,13 +2,13 @@ let currentInput = "";
 let previousInput = "";
 let currentOperator = "";
 let lastResult = "";
-let lastButtonPercentage = false;
+let lastButtonModulo = false;
 
 
 /*
 <button class="function-buttons" id="exponent-button"><i>n</i><sup>x</sup></button>
 <button class="function-buttons" id="factorial-button"><i>n</i>!</button>
-<button class="function-buttons" id="percent-button">%</button>
+<button class="function-buttons" id="modulo-button">%</button>
 <button class="miscellaneous-buttons" id="colour-button">COLOUR</button>
 <button class="miscellaneous-buttons" id="power-button">POWER</button>
 <button class="digit-buttons" id="seven-button">7</button>
@@ -55,13 +55,13 @@ buttons.addEventListener("click", (event) => {
         currentInput += target.textContent;
         display.textContent += target.textContent;
     } else if (isOperatorButton) {
-        if (lastButtonPercentage) {
+        if (lastButtonModulo) {
             const result = parseFloat(previousInput) / 100;
             currentInput = result.toString();
             display.textContent = roundResult(result) + target.textContent;
             previousInput = currentInput;
             currentInput = "";
-            lastButtonPercentage = false;
+            lastButtonModulo = false;
         } else if (displayFactorial) {
             const result = evaluateExpression(previousInput, currentOperator);
             currentInput = result.toString();
@@ -110,10 +110,10 @@ factorialButton.addEventListener("click", () => {
     }
 });
 
-const percentButton = document.getElementById("percent-button");
-percentButton.addEventListener("click", () => {
+const moduloButton = document.getElementById("modulo-button");
+moduloButton.addEventListener("click", () => {
     if (currentInput) {
-        lastButtonPercentage = true;
+        lastButtonModulo = true;
         currentOperator = "%";
         previousInput = currentInput;
         currentInput = "";
@@ -173,14 +173,6 @@ equalsButton.addEventListener("click", () => {
         display.textContent = roundResult(result);
         displayFactorial = false;
         currentOperator = "";
-    } else if (lastButtonPercentage) {
-        const result = parseFloat(previousInput) / 100;
-        display.textContent = roundResult(result);
-        currentInput = result.toString();
-        previousInput = "";
-        currentOperator = "";
-        lastResult = result;
-        lastButtonPercentage = false;
     } else if (previousInput && currentOperator && currentInput) {
         const result = evaluateExpression(previousInput, currentOperator, currentInput);
         display.textContent = roundResult(result);
@@ -190,6 +182,7 @@ equalsButton.addEventListener("click", () => {
         lastResult = result;
     }
 });
+
 
 
 function backspace() {
@@ -245,8 +238,9 @@ function evaluateExpression(a, operator, b = null) {
     if (operator === "÷") return (b === 0) ? a : a / b;
     if (operator === "^") return Math.pow(a, b);
     if (operator === "!") return factorial(a);
-    if (operator === "%") return a / 100;
+    if (operator === "%") return a % b; // change the operation here
 }
+
 
 
 
