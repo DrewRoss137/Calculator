@@ -1,14 +1,40 @@
 let currentInput = "";
+let previousInput = "";
 let currentOperator = "";
 let lastResult = "";
-let previousInput = "";
+
+/*
+<button class="function-buttons" id="exponent-button"><i>n</i><sup>x</sup></button>
+<button class="function-buttons" id="factorial-button"><i>n</i>!</button>
+<button class="function-buttons" id="percent-button">%</button>
+<button class="miscellaneous-buttons" id="colour-button">COLOUR</button>
+<button class="miscellaneous-buttons" id="power-button">POWER</button>
+<button class="digit-buttons" id="seven-button">7</button>
+<button class="digit-buttons" id="eight-button">8</button>
+<button class="digit-buttons" id="nine-button">9</button>
+<button class="rescind-buttons" id="delete-button">DEL</button>
+<button class="rescind-buttons" id="all-clear-button">AC</button>
+<button class="digit-buttons" id="four-button">4</button>
+<button class="digit-buttons" id="five-button">5</button>
+<button class="digit-buttons" id="six-button">6</button>
+<button class="operator-buttons" id="multiplication-button">x</button>
+<button class="operator-buttons" id="division-button">÷</button>
+<button class="digit-buttons" id="one-button">1</button>
+<button class="digit-buttons" id="two-button">2</button>
+<button class="digit-buttons" id="three-button">3</button>
+<button class="operator-buttons" id="addition-button">+</button>
+<button class="operator-buttons" id="subtraction-button">–</button>
+<button class="digit-buttons" id="zero-button">0</button>
+<button class="modifier-buttons" id="decimal-point-button">.</button>
+<button class="modifier-buttons" id="sign-button">+/–</button>
+<button class="answer-buttons" id="answer-button">ANS</button>
+<button class="answer-buttons" id="equals-button">=</button>
+*/
 
 const display = document.getElementById("display");
 
 const buttons = document.getElementById("buttons");
 buttons.addEventListener("click", (event) => {
-    // Check if power button is on
-    const powerButton = document.getElementById("power-button");
     if (powerButton.classList.contains("off")) {
         display.textContent = "";
         currentInput = "";
@@ -190,35 +216,39 @@ function toggleCalculatorColor() {
     const calculator = document.querySelector(".calculator");
     const buttons = document.querySelectorAll(".digit-buttons");
     const colorButton = document.querySelector("#colour-button");
-  
-    calculator.classList.toggle("light");
-  
-    if (calculator.classList.contains("light")) {
-      buttons.forEach(button => {
-        button.classList.remove("dark-theme-button");
-        button.classList.add("light-theme-button");
-      });
-      colorButton.classList.remove("dark-theme-button");
-      colorButton.classList.add("light-theme-button");
-      colorButton.classList.remove("dark-theme-color-button");
-      colorButton.classList.add("light-theme-color-button");
-    } else {
-      buttons.forEach(button => {
-        button.classList.remove("light-theme-button");
-        button.classList.add("dark-theme-button");
-      });
-      colorButton.classList.remove("light-theme-button");
-      colorButton.classList.add("dark-theme-button");
-      colorButton.classList.remove("light-theme-color-button");
-      colorButton.classList.add("dark-theme-color-button");
-    }
-  }
-  
-  
-  
-  
-  
+    const display = document.querySelector("#display");
 
+    calculator.classList.toggle("light");
+    display.classList.toggle("light");
+
+    if (calculator.classList.contains("light")) {
+        buttons.forEach(button => {
+            button.classList.remove("dark-theme-button");
+            button.classList.add("light-theme-button");
+        });
+        colorButton.classList.remove("dark-theme-button");
+        colorButton.classList.add("light-theme-button");
+        colorButton.classList.remove("dark-theme-color-button");
+        colorButton.classList.add("light-theme-color-button");
+
+        display.classList.remove("dark-display");
+        display.classList.add("light-display");
+    } else {
+        buttons.forEach(button => {
+            button.classList.remove("light-theme-button");
+            button.classList.add("dark-theme-button");
+        });
+        colorButton.classList.remove("light-theme-button");
+        colorButton.classList.add("dark-theme-button");
+        colorButton.classList.remove("light-theme-color-button");
+        colorButton.classList.add("dark-theme-color-button");
+
+        display.classList.remove("light-display");
+        display.classList.add("dark-display");
+    }
+}
+
+  
 function togglePowerButtonStyle() {
     const powerButton = document.getElementById("power-button");
     if (powerButton.classList.contains("on")) {
