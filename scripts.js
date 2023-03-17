@@ -56,9 +56,10 @@ buttons.addEventListener("click", (event) => {
         display.textContent += target.textContent;
     } else if (isOperatorButton) {
         if (lastButtonModulo) {
-            const result = evaluateExpression(previousInput, currentOperator, currentInput);
-            previousInput = result.toString();
+            const result = parseFloat(previousInput) / 100;
+            currentInput = result.toString();
             display.textContent = roundResult(result) + target.textContent;
+            previousInput = currentInput;
             currentInput = "";
             lastButtonModulo = false;
         } else if (displayFactorial) {
@@ -67,6 +68,7 @@ buttons.addEventListener("click", (event) => {
             display.textContent = roundResult(result);
             displayFactorial = false;
         }
+
         if (previousInput && currentOperator && currentInput) {
             previousInput = evaluateExpression(previousInput, currentOperator, currentInput);
             display.textContent = roundResult(previousInput);
@@ -111,13 +113,14 @@ factorialButton.addEventListener("click", () => {
 const moduloButton = document.getElementById("modulo-button");
 moduloButton.addEventListener("click", () => {
     if (currentInput) {
-        lastButtonModulo = true;
+        lastButtonModulo = false;
         currentOperator = "%";
         previousInput = currentInput;
         currentInput = "";
         display.textContent += "%";
     }
 });
+
 
 
 
@@ -171,6 +174,14 @@ equalsButton.addEventListener("click", () => {
         display.textContent = roundResult(result);
         displayFactorial = false;
         currentOperator = "";
+    } else if (lastButtonModulo) {
+        const result = parseFloat(previousInput) / 100;
+        display.textContent = roundResult(result);
+        currentInput = result.toString();
+        previousInput = "";
+        currentOperator = "";
+        lastResult = result;
+        lastButtonModulo = false;
     } else if (previousInput && currentOperator && currentInput) {
         const result = evaluateExpression(previousInput, currentOperator, currentInput);
         display.textContent = roundResult(result);
@@ -180,7 +191,6 @@ equalsButton.addEventListener("click", () => {
         lastResult = result;
     }
 });
-
 
 
 function backspace() {
@@ -236,7 +246,7 @@ function evaluateExpression(a, operator, b = null) {
     if (operator === "÷") return (b === 0) ? a : a / b;
     if (operator === "^") return Math.pow(a, b);
     if (operator === "!") return factorial(a);
-    if (operator === "%") return a % b; // change the operation here
+    if (operator === "%") return a % b;
 }
 
 
@@ -315,7 +325,6 @@ function setDefaultDarkMode() {
     colorButton.classList.add("dark-theme-button");
     colorButton.classList.add("dark-theme-color-button");
   }
-  
   
   
   
