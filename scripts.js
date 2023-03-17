@@ -2,6 +2,8 @@ let currentInput = "";
 let previousInput = "";
 let currentOperator = "";
 let lastResult = "";
+let lastButtonPercentage = false;
+
 
 /*
 <button class="function-buttons" id="exponent-button"><i>n</i><sup>x</sup></button>
@@ -53,13 +55,20 @@ buttons.addEventListener("click", (event) => {
         currentInput += target.textContent;
         display.textContent += target.textContent;
     } else if (isOperatorButton) {
-        if (displayFactorial) {
+        if (lastButtonPercentage) {
+            const result = parseFloat(previousInput) / 100;
+            currentInput = result.toString();
+            display.textContent = roundResult(result) + target.textContent;
+            previousInput = currentInput;
+            currentInput = "";
+            lastButtonPercentage = false;
+        } else if (displayFactorial) {
             const result = evaluateExpression(previousInput, currentOperator);
             currentInput = result.toString();
             display.textContent = roundResult(result);
             displayFactorial = false;
         }
-    
+
         if (previousInput && currentOperator && currentInput) {
             previousInput = evaluateExpression(previousInput, currentOperator, currentInput);
             display.textContent = roundResult(previousInput);
@@ -74,8 +83,9 @@ buttons.addEventListener("click", (event) => {
         display.textContent += target.textContent;
         currentOperator = target.textContent;
     }
-    
+
 });
+
 
 
 const exponentButton = document.getElementById("exponent-button");
@@ -99,14 +109,19 @@ factorialButton.addEventListener("click", () => {
         displayFactorial = true;
     }
 });
+
 const percentButton = document.getElementById("percent-button");
 percentButton.addEventListener("click", () => {
     if (currentInput) {
-        const result = parseFloat(currentInput) / 100;
-        currentInput = result.toString();
-        display.textContent = roundResult(result);
+        lastButtonPercentage = true;
+        currentOperator = "%";
+        previousInput = currentInput;
+        currentInput = "";
+        display.textContent += "%";
     }
 });
+
+
 
 const colourButton = document.getElementById("colour-button");
 colourButton.addEventListener("click", () => {
@@ -158,6 +173,14 @@ equalsButton.addEventListener("click", () => {
         display.textContent = roundResult(result);
         displayFactorial = false;
         currentOperator = "";
+    } else if (lastButtonPercentage) {
+        const result = parseFloat(previousInput) / 100;
+        display.textContent = roundResult(result);
+        currentInput = result.toString();
+        previousInput = "";
+        currentOperator = "";
+        lastResult = result;
+        lastButtonPercentage = false;
     } else if (previousInput && currentOperator && currentInput) {
         const result = evaluateExpression(previousInput, currentOperator, currentInput);
         display.textContent = roundResult(result);
@@ -216,14 +239,15 @@ function updateDisplay() {
 function evaluateExpression(a, operator, b = null) {
     a = parseFloat(a);
     if (b !== null) b = parseFloat(b);
-
     if (operator === "+") return a + b;
     if (operator === "–") return a - b;
     if (operator === "x") return a * b;
     if (operator === "÷") return (b === 0) ? a : a / b;
     if (operator === "^") return Math.pow(a, b);
     if (operator === "!") return factorial(a);
+    if (operator === "%") return a / 100;
 }
+
 
 
 function factorial(n) {
