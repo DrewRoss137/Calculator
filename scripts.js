@@ -187,27 +187,37 @@ function factorial(n) {
 };
 
 function toggleCalculatorColor() {
-  const calculator = document.querySelector(".calculator");
-  const buttons = document.querySelectorAll("#buttons button");
-  const colorButton = document.querySelector("#colour-button");
-
-  calculator.classList.toggle("light");
-  if (calculator.classList.contains("light")) {
-    buttons.forEach(button => {
-      button.style.backgroundColor = "#fff";
-      button.style.color = "#000";
-    });
-    colorButton.style.backgroundColor = "#fff";
-    colorButton.style.color = "#000";
-  } else {
-    buttons.forEach(button => {
-      button.style.backgroundColor = "";
-      button.style.color = "";
-    });
-    colorButton.style.backgroundColor = "";
-    colorButton.style.color = "";
+    const calculator = document.querySelector(".calculator");
+    const buttons = document.querySelectorAll(".digit-buttons");
+    const colorButton = document.querySelector("#colour-button");
+  
+    calculator.classList.toggle("light");
+  
+    if (calculator.classList.contains("light")) {
+      buttons.forEach(button => {
+        button.classList.remove("dark-theme-button");
+        button.classList.add("light-theme-button");
+      });
+      colorButton.classList.remove("dark-theme-button");
+      colorButton.classList.add("light-theme-button");
+      colorButton.classList.remove("dark-theme-color-button");
+      colorButton.classList.add("light-theme-color-button");
+    } else {
+      buttons.forEach(button => {
+        button.classList.remove("light-theme-button");
+        button.classList.add("dark-theme-button");
+      });
+      colorButton.classList.remove("light-theme-button");
+      colorButton.classList.add("dark-theme-button");
+      colorButton.classList.remove("light-theme-color-button");
+      colorButton.classList.add("dark-theme-color-button");
+    }
   }
-}
+  
+  
+  
+  
+  
 
 function togglePowerButtonStyle() {
     const powerButton = document.getElementById("power-button");
@@ -222,9 +232,25 @@ function togglePowerButtonStyle() {
 
 document.addEventListener("DOMContentLoaded", () => {
     setPowerButtonOn();
+    setDefaultDarkMode();
 });
 
 function setPowerButtonOn() {
     const powerButton = document.getElementById("power-button");
     powerButton.classList.add("on");
 }
+function setDefaultDarkMode() {
+    const buttons = document.querySelectorAll(".digit-buttons");
+    const colorButton = document.querySelector("#colour-button");
+  
+    buttons.forEach(button => {
+      button.classList.add("dark-theme-button");
+    });
+  
+    colorButton.classList.add("dark-theme-button");
+    colorButton.classList.add("dark-theme-color-button");
+  }
+  
+  
+  
+  
