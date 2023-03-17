@@ -4,35 +4,6 @@ let currentOperator = "";
 let lastResult = "";
 let lastButtonModulo = false;
 
-
-/*
-<button class="function-buttons" id="exponent-button"><i>n</i><sup>x</sup></button>
-<button class="function-buttons" id="factorial-button"><i>n</i>!</button>
-<button class="function-buttons" id="modulo-button">%</button>
-<button class="miscellaneous-buttons" id="colour-button">COLOUR</button>
-<button class="miscellaneous-buttons" id="power-button">POWER</button>
-<button class="digit-buttons" id="seven-button">7</button>
-<button class="digit-buttons" id="eight-button">8</button>
-<button class="digit-buttons" id="nine-button">9</button>
-<button class="rescind-buttons" id="delete-button">DEL</button>
-<button class="rescind-buttons" id="all-clear-button">AC</button>
-<button class="digit-buttons" id="four-button">4</button>
-<button class="digit-buttons" id="five-button">5</button>
-<button class="digit-buttons" id="six-button">6</button>
-<button class="operator-buttons" id="multiplication-button">x</button>
-<button class="operator-buttons" id="division-button">÷</button>
-<button class="digit-buttons" id="one-button">1</button>
-<button class="digit-buttons" id="two-button">2</button>
-<button class="digit-buttons" id="three-button">3</button>
-<button class="operator-buttons" id="addition-button">+</button>
-<button class="operator-buttons" id="subtraction-button">–</button>
-<button class="digit-buttons" id="zero-button">0</button>
-<button class="modifier-buttons" id="decimal-point-button">.</button>
-<button class="modifier-buttons" id="sign-button">+/–</button>
-<button class="answer-buttons" id="answer-button">ANS</button>
-<button class="answer-buttons" id="equals-button">=</button>
-*/
-
 const display = document.getElementById("display");
 let displayFactorial = false;
 buttons.addEventListener("click", (event) => {
@@ -113,7 +84,10 @@ factorialButton.addEventListener("click", () => {
 const moduloButton = document.getElementById("modulo-button");
 moduloButton.addEventListener("click", () => {
     if (currentInput) {
-        lastButtonModulo = false;
+        if (isOperator(display.textContent.slice(-1))) {
+            backspace();
+        }
+        lastButtonModulo = true;
         currentOperator = "%";
         previousInput = currentInput;
         currentInput = "";
@@ -175,7 +149,7 @@ equalsButton.addEventListener("click", () => {
         displayFactorial = false;
         currentOperator = "";
     } else if (lastButtonModulo) {
-        const result = parseFloat(previousInput) / 100;
+        const result = parseFloat(previousInput) % parseFloat(currentInput);
         display.textContent = roundResult(result);
         currentInput = result.toString();
         previousInput = "";
@@ -205,7 +179,7 @@ function clearDisplay() {
 };
 
 function isOperator(char) {
-    const operators = ["+", "–", "x", "÷"];
+    const operators = ["+", "–", "x", "÷", "!", "%"];
     return operators.includes(char);
 };
 
