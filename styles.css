@@ -119,9 +119,47 @@ button {
     text-shadow: 0px 0px 3px rgba(255, 255, 255, 1);
 }
 
-#display,
-.digit-buttons,
-.miscellaneous-buttons {
+
+
+
+
+  
+  .dark-theme-colour-button {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .dark-theme-colour-button {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .light-theme-colour-button {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .dark-theme-button {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .light-theme-button {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .dark-theme-color-button {
+    color: #fff;
+  }
+  
+  .light-theme-color-button {
+    color: #000;
+  }
+  
+  
+
+#display {
     background: radial-gradient(circle, rgba(25, 25, 25, 1) 0%, rgba(0, 0, 0, 1) 125%);
     border-color: rgba(0, 0, 0, 0.5);
     text-align: center;
@@ -163,7 +201,6 @@ button:active {
 }
 
 .function-buttons,
-.miscellaneous-buttons,
 .rescind-buttons,
 .operator-buttons,
 .modifier-buttons,
@@ -181,9 +218,6 @@ button:active {
     font-size: 20px;
 }
 
-#colour-button {
-    color: rgba(255, 255, 255, 1);
-}
 
 #power-button.on {
     background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(0, 255, 0, 1) 125%);
