@@ -32,8 +32,7 @@ let lastResult = "";
 */
 
 const display = document.getElementById("display");
-
-const buttons = document.getElementById("buttons");
+let displayFactorial = false;
 buttons.addEventListener("click", (event) => {
     if (powerButton.classList.contains("off")) {
         display.textContent = "";
@@ -54,8 +53,15 @@ buttons.addEventListener("click", (event) => {
         currentInput += target.textContent;
         display.textContent += target.textContent;
     } else if (isOperatorButton) {
+        if (displayFactorial) {
+            const result = evaluateExpression(previousInput, currentOperator);
+            currentInput = result.toString();
+            display.textContent = roundResult(result);
+            displayFactorial = false;
+        }
+    
         if (previousInput && currentOperator && currentInput) {
-            previousInput = evaluateExpression(previousInput, currentInput, currentOperator);
+            previousInput = evaluateExpression(previousInput, currentOperator, currentInput);
             display.textContent = roundResult(previousInput);
             currentInput = "";
         } else if (currentInput) {
@@ -68,7 +74,9 @@ buttons.addEventListener("click", (event) => {
         display.textContent += target.textContent;
         currentOperator = target.textContent;
     }
+    
 });
+
 
 const exponentButton = document.getElementById("exponent-button");
 exponentButton.addEventListener("click", () => {
@@ -80,15 +88,17 @@ exponentButton.addEventListener("click", () => {
     }
 });
 
+
 const factorialButton = document.getElementById("factorial-button");
 factorialButton.addEventListener("click", () => {
     if (currentInput) {
-        const result = factorial(parseInt(currentInput));
-        currentInput = result.toString();
-        display.textContent = roundResult(result);
+        currentOperator = "!";
+        previousInput = currentInput;
+        currentInput = "";
+        display.textContent += "!";
+        displayFactorial = true;
     }
 });
-
 const percentButton = document.getElementById("percent-button");
 percentButton.addEventListener("click", () => {
     if (currentInput) {
@@ -128,7 +138,6 @@ signButton.addEventListener("click", toggleSign);
 let answerVisible = false;
 const answerButton = document.getElementById("answer-button");
 answerButton.addEventListener("click", toggleAnswer);
-
 function toggleAnswer() {
     if (!answerVisible) {
         if (lastResult !== null) {
@@ -143,8 +152,14 @@ function toggleAnswer() {
 
 const equalsButton = document.getElementById("equals-button");
 equalsButton.addEventListener("click", () => {
-    if (previousInput && currentOperator && currentInput) {
-        const result = evaluateExpression(previousInput, currentInput, currentOperator);
+    if (displayFactorial) {
+        const result = evaluateExpression(previousInput, currentOperator);
+        currentInput = result.toString();
+        display.textContent = roundResult(result);
+        displayFactorial = false;
+        currentOperator = "";
+    } else if (previousInput && currentOperator && currentInput) {
+        const result = evaluateExpression(previousInput, currentOperator, currentInput);
         display.textContent = roundResult(result);
         currentInput = result.toString();
         previousInput = "";
@@ -152,6 +167,7 @@ equalsButton.addEventListener("click", () => {
         lastResult = result;
     }
 });
+
 
 function backspace() {
     display.textContent = display.textContent.slice(0, -1);
@@ -169,14 +185,6 @@ function isOperator(char) {
     return operators.includes(char);
 };
 
-function evaluateExpression(a, b, operator) {
-    a = parseFloat(a);
-    b = parseFloat(b);
-    if (operator === "+") return a + b;
-    if (operator === "–") return a - b;
-    if (operator === "x") return a * b;
-    if (operator === "÷") return (b === 0) ? a : a / b;
-};
 
 function roundResult(value) {
     return Math.round(value * 1000000) / 1000000;
@@ -205,15 +213,18 @@ function updateDisplay() {
     }
 };
 
-function evaluateExpression(a, b, operator) {
+function evaluateExpression(a, operator, b = null) {
     a = parseFloat(a);
-    b = parseFloat(b);
+    if (b !== null) b = parseFloat(b);
+
     if (operator === "+") return a + b;
     if (operator === "–") return a - b;
     if (operator === "x") return a * b;
     if (operator === "÷") return (b === 0) ? a : a / b;
     if (operator === "^") return Math.pow(a, b);
-};
+    if (operator === "!") return factorial(a);
+}
+
 
 function factorial(n) {
     if (n === 0 || n === 1) return 1;
