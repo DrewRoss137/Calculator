@@ -125,19 +125,27 @@ decimalPointButton.addEventListener("click", () => {
 const signButton = document.getElementById("sign-button");
 signButton.addEventListener("click", toggleSign);
 
+let answerVisible = false;
 const answerButton = document.getElementById("answer-button");
-answerButton.addEventListener("click", () => {
-    if (lastResult !== null) {
-        currentInput += lastResult.toString();
-        display.textContent += lastResult.toString();
+answerButton.addEventListener("click", toggleAnswer);
+
+function toggleAnswer() {
+    if (!answerVisible) {
+        if (lastResult !== null) {
+            display.textContent = lastResult.toString();
+            answerVisible = true;
+        }
+    } else {
+        updateDisplay();
+        answerVisible = false;
     }
-});
+}
 
 const equalsButton = document.getElementById("equals-button");
 equalsButton.addEventListener("click", () => {
     if (previousInput && currentOperator && currentInput) {
         const result = evaluateExpression(previousInput, currentInput, currentOperator);
-        display.innerHTML = roundResult(result);
+        display.textContent = roundResult(result);
         currentInput = result.toString();
         previousInput = "";
         currentOperator = "";
