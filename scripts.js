@@ -56,10 +56,9 @@ buttons.addEventListener("click", (event) => {
         display.textContent += target.textContent;
     } else if (isOperatorButton) {
         if (lastButtonModulo) {
-            const result = parseFloat(previousInput) / 100;
-            currentInput = result.toString();
+            const result = evaluateExpression(previousInput, currentOperator, currentInput);
+            previousInput = result.toString();
             display.textContent = roundResult(result) + target.textContent;
-            previousInput = currentInput;
             currentInput = "";
             lastButtonModulo = false;
         } else if (displayFactorial) {
@@ -68,7 +67,6 @@ buttons.addEventListener("click", (event) => {
             display.textContent = roundResult(result);
             displayFactorial = false;
         }
-
         if (previousInput && currentOperator && currentInput) {
             previousInput = evaluateExpression(previousInput, currentOperator, currentInput);
             display.textContent = roundResult(previousInput);
