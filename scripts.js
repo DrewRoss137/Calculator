@@ -6,6 +6,17 @@ const display = document.getElementById("display");
 
 const buttons = document.getElementById("buttons");
 
+const functionButtons = document.querySelectorAll(".function-buttons");
+functionButtons.forEach(button => {
+    const symbol = getFunctionSymbol(button.id);
+    button.addEventListener("click", () => {
+        if (isOperator(display.textContent.slice(-1))) {
+            display.textContent = display.textContent.slice(0, -1);
+        }
+        display.textContent += symbol;
+    });
+});
+
 const miscellaneousButtons = document.querySelectorAll(".miscellaneous-buttons");
 
 const digitButtons = document.querySelectorAll(".digit-buttons");
@@ -16,6 +27,14 @@ digitButtons.forEach(button => {
 });
  
 const operatorButtons = document.querySelectorAll(".operator-buttons");
+operatorButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        if (isOperator(display.textContent.slice(-1))) {
+            display.textContent = display.textContent.slice(0, -1);
+        }
+        display.textContent += button.textContent;
+    });
+});
 
 const exponentButton = document.getElementById("exponent-button");
 
@@ -86,6 +105,20 @@ function togglePowerButton() {
     notPowerButtons.forEach(button => {
         button.disabled = !powerButtonOn;
     });
+};
+
+function isOperator(char) {
+    const operators = ["^", "!", "%", "x", "÷", "+", "–"];
+    return operators.includes(char);
+};
+
+function getFunctionSymbol(buttonId) {
+    const symbols = {
+        "exponent-button": "^",
+        "factorial-button": "!",
+        "modulo-button": "%"
+    };
+    return symbols[buttonId];
 };
 
 function exponent(a, b) {
