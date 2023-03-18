@@ -229,6 +229,9 @@ function evaluatePostfixExpression(elements) {
             let a;
             if (element !== "!") {
                 a = parseFloat(stack.pop());
+                if (isNaN(a)) {
+                    return display.textContent;
+                }
             }
             switch (element) {
                 case "^":
