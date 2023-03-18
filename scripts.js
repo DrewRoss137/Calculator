@@ -16,6 +16,9 @@ functionButtons.forEach(button => {
         if (isOperator(display.textContent.slice(-1)) && display.textContent.slice(-1) !== "!") {
             display.textContent = display.textContent.slice(0, -1);
         }
+        if (display.textContent.trim().length === 0) {
+            return;
+        }
         display.textContent += symbol;
     });
 });
@@ -28,12 +31,15 @@ digitButtons.forEach(button => {
       display.textContent += button.textContent;
     });
 });
- 
+
 const operatorButtons = document.querySelectorAll(".operator-buttons");
 operatorButtons.forEach(button => {
     button.addEventListener("click", () => {
         if (isOperator(display.textContent.slice(-1)) && display.textContent.slice(-1) !== "!") {
             display.textContent = display.textContent.slice(0, -1);
+        }
+        if (display.textContent.trim().length === 0) {
+            return;
         }
         display.textContent += button.textContent;
     });
