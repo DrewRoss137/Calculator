@@ -74,11 +74,20 @@ const decimalPointButton = document.getElementById("decimal-point-button");
 const signButton = document.getElementById("sign-button");
 
 const answerButton = document.getElementById("answer-button");
+answerButton.addEventListener("click", () => {
+    if (displayAnswer) {
+        display.textContent = "";
+        displayAnswer = false;
+    } else if (previousAnswer !== undefined) {
+        display.textContent = previousAnswer;
+        displayAnswer = true;}
+});
 
 const equalsButton = document.getElementById("equals-button");
 equalsButton.addEventListener("click", () => {
     const result = calculateExpression(display.textContent);
     display.textContent = result;
+    previousAnswer = result;
     const lastChar = display.textContent.slice(-1);
     if (lastChar === "!") {
         display.textContent = display.textContent.slice(0, -1);
@@ -87,6 +96,8 @@ equalsButton.addEventListener("click", () => {
 
 let darkMode;
 let powerButtonOn;
+let previousAnswer;
+let displayAnswer;
 
 toggleColourButton();
 togglePowerButton();
@@ -163,7 +174,6 @@ function subtraction(a, b) {
     return a - b;
 };
 
-
 function calculateExpression(expression) {
     const elements = separateElements(expression);
     const postfixElements = convertInfixToPostfix(elements);
@@ -191,8 +201,8 @@ function separateElements(expression) {
 };
 
 function convertInfixToPostfix(elements) {
-    const output = [];
     const operators = [];
+    const output = [];
     const precedence = {
         "^": 4,
         "!": 4,
