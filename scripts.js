@@ -10,12 +10,16 @@ const functionButtons = document.querySelectorAll(".function-buttons");
 functionButtons.forEach(button => {
     const symbol = getFunctionSymbol(button.id);
     button.addEventListener("click", () => {
-        if (isOperator(display.textContent.slice(-1))) {
+        if (display.textContent.slice(-1) === "!") {
+            return;
+        }
+        if (isOperator(display.textContent.slice(-1)) && display.textContent.slice(-1) !== "!") {
             display.textContent = display.textContent.slice(0, -1);
         }
         display.textContent += symbol;
     });
 });
+
 
 const miscellaneousButtons = document.querySelectorAll(".miscellaneous-buttons");
 
@@ -29,7 +33,7 @@ digitButtons.forEach(button => {
 const operatorButtons = document.querySelectorAll(".operator-buttons");
 operatorButtons.forEach(button => {
     button.addEventListener("click", () => {
-        if (isOperator(display.textContent.slice(-1))) {
+        if (isOperator(display.textContent.slice(-1)) && display.textContent.slice(-1) !== "!") {
             display.textContent = display.textContent.slice(0, -1);
         }
         display.textContent += button.textContent;
@@ -73,6 +77,14 @@ const signButton = document.getElementById("sign-button");
 const answerButton = document.getElementById("answer-button");
 
 const equalsButton = document.getElementById("equals-button");
+equalsButton.addEventListener("click", () => {
+    const result = calculateExpression(display.textContent);
+    display.textContent = result;
+    const lastChar = display.textContent.slice(-1);
+    if (lastChar === "!") {
+        display.textContent = display.textContent.slice(0, -1);
+    }
+});
 
 let darkMode;
 let powerButtonOn;
@@ -150,4 +162,101 @@ function addition(a, b) {
 
 function subtraction(a, b) {
     return a - b;
+};
+
+
+function calculateExpression(expression) {
+    const elements = separateElements(expression);
+    const postfixElements = convertInfixToPostfix(elements);
+    return evaluatePostfixExpression(postfixElements);
+};
+
+function separateElements(expression) {
+    const elements = [];
+    let currentElement = "";
+    for (const char of expression) {
+        if (isOperator(char)) {
+            if (currentElement) {
+                elements.push(currentElement);
+                currentElement = "";
+            }
+            elements.push(char);
+        } else {
+            currentElement += char;
+        }
+    }
+    if (currentElement) {
+        elements.push(currentElement);
+    }
+    return elements;
+};
+
+function convertInfixToPostfix(elements) {
+    const output = [];
+    const operators = [];
+    const precedence = {
+        "^": 4,
+        "!": 4,
+        "%": 3,
+        "x": 2,
+        "÷": 2,
+        "+": 1,
+        "–": 1
+    };
+    for (const element of elements) {
+        if (isOperator(element)) {
+            while (
+                operators.length > 0 &&
+                precedence[operators[operators.length - 1]] >= precedence[element]
+            ) {
+                output.push(operators.pop());
+            }
+            operators.push(element);
+        } else {
+            output.push(element);
+        }
+    }
+    while (operators.length > 0) {
+        output.push(operators.pop());
+    }
+    return output;
+};
+
+function evaluatePostfixExpression(elements) {
+    const stack = [];
+    for (const element of elements) {
+        if (isOperator(element)) {
+            const b = parseFloat(stack.pop());
+            let a;
+            if (element !== "!") {
+                a = parseFloat(stack.pop());
+            }
+            switch (element) {
+                case "^":
+                    stack.push(exponent(a, b));
+                    break;
+                case "!":
+                    stack.push(factorial(b));
+                    break;
+                case "%":
+                    stack.push(modulo(a, b));
+                    break;
+                case "x":
+                    stack.push(multiplication(a, b));
+                    break;
+                case "÷":
+                    stack.push(division(a, b));
+                    break;
+                case "+":
+                    stack.push(addition(a, b));
+                    break;
+                case "–":
+                    stack.push(subtraction(a, b));
+                    break;
+            }
+        } else {
+            stack.push(element);
+        }
+    }
+    return stack[0];
 };
