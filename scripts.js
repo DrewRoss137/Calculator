@@ -9,6 +9,13 @@ const buttons = document.getElementById("buttons");
 const miscellaneousButtons = document.querySelectorAll(".miscellaneous-buttons");
 
 const digitButtons = document.querySelectorAll(".digit-buttons");
+digitButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      display.textContent += button.textContent;
+    });
+});
+ 
+const operatorButtons = document.querySelectorAll(".operator-buttons");
 
 const exponentButton = document.getElementById("exponent-button");
 
@@ -17,13 +24,20 @@ const factorialButton = document.getElementById("factorial-button");
 const moduloButton = document.getElementById("modulo-button");
 
 const colourButton = document.getElementById("colour-button");
-colourButton.addEventListener("click", toggleColourMode);
+colourButton.addEventListener("click", toggleColourButton);
 
 const powerButton = document.getElementById("power-button");
+powerButton.addEventListener("click", togglePowerButton);
 
 const deleteButton = document.getElementById("delete-button");
+deleteButton.addEventListener("click", () => {
+    display.textContent = display.textContent.slice(0, -1);
+});
 
 const allClearButton = document.getElementById("all-clear-button");
+allClearButton.addEventListener("click", () => {
+    display.textContent = "";
+});
 
 const multiplicationButton = document.getElementById("multiplication-button");
 
@@ -41,19 +55,36 @@ const answerButton = document.getElementById("answer-button");
 
 const equalsButton = document.getElementById("equals-button");
 
-let darkMode = false;
+let darkMode;
+let powerButtonOn;
 
-toggleColourMode()
 
-function toggleColourMode() {
+toggleColourButton();
+togglePowerButton();
+
+function toggleColourButton() {
     darkMode = !darkMode;
-    [calculator, display, ...miscellaneousButtons, ...digitButtons].forEach(element => {
-      toggleClass(element, darkMode);
+    [calculator, display, colourButton, ...digitButtons].forEach(element => {
+      toggleColourClass(element, darkMode);
     });
 };
   
-function toggleClass(element, darkMode) {
+function toggleColourClass(element, darkMode) {
     element.classList.toggle("dark-mode", darkMode);
     element.classList.toggle("light-mode", !darkMode);
+    if (colourButton) {
+        colourButton.textContent = darkMode ? "DARK" : "LIGHT";
+    }
 };
-  
+
+function togglePowerButton() {
+    powerButtonOn = !powerButtonOn;
+    powerButton.classList.toggle("power-button-on", powerButtonOn);
+    powerButton.classList.toggle("power-button-off", !powerButtonOn);
+    powerButton.textContent = powerButtonOn ? "ON" : "OFF";
+    display.textContent = powerButtonOn ? display.textContent : "";
+    const notPowerButtons = document.querySelectorAll("button:not(#power-button)");
+    notPowerButtons.forEach(button => {
+        button.disabled = !powerButtonOn;
+    });
+};
