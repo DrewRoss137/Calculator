@@ -10,7 +10,7 @@ const functionButtons = document.querySelectorAll(".function-buttons");
 functionButtons.forEach(button => {
     const symbol = getFunctionSymbol(button.id);
     button.addEventListener("click", () => {
-        if (display.textContent.slice(-1) === "!") {
+        if (symbol === "!" && display.textContent.slice(-1) === "!") {
             return;
         }
         if (isOperator(display.textContent.slice(-1)) && display.textContent.slice(-1) !== "!") {
@@ -19,7 +19,6 @@ functionButtons.forEach(button => {
         display.textContent += symbol;
     });
 });
-
 
 const miscellaneousButtons = document.querySelectorAll(".miscellaneous-buttons");
 
