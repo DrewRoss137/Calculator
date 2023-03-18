@@ -58,7 +58,6 @@ const equalsButton = document.getElementById("equals-button");
 let darkMode;
 let powerButtonOn;
 
-
 toggleColourButton();
 togglePowerButton();
 
@@ -87,4 +86,35 @@ function togglePowerButton() {
     notPowerButtons.forEach(button => {
         button.disabled = !powerButtonOn;
     });
+};
+
+function exponent(a, b) {
+    return Math.pow(a, b);
+};
+
+function factorial(n) {
+    if (n === 0) {
+      return 1;
+    }
+    return n * factorial(n - 1);
+};
+  
+function modulo(a, b) {
+    return a % b;
+};
+
+function multiplication(a, b) {
+    return a * b;
+};
+
+function division(a, b) {
+    return a / b;
+};
+
+function addition(a, b) {
+    return a + b;
+};
+
+function subtraction(a, b) {
+    return a - b;
 };
