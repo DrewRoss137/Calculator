@@ -28,6 +28,9 @@ const miscellaneousButtons = document.querySelectorAll(".miscellaneous-buttons")
 const digitButtons = document.querySelectorAll(".digit-buttons");
 digitButtons.forEach(button => {
     button.addEventListener("click", () => {
+        if (display.textContent.slice(-1) === "!") {
+            return;
+        }
         display.textContent += button.textContent;
         lastNumber += button.textContent;
     });
