@@ -28,13 +28,15 @@ const miscellaneousButtons = document.querySelectorAll(".miscellaneous-buttons")
 const digitButtons = document.querySelectorAll(".digit-buttons");
 digitButtons.forEach(button => {
     button.addEventListener("click", () => {
-      display.textContent += button.textContent;
+        display.textContent += button.textContent;
+        lastNumber += button.textContent;
     });
 });
 
 const operatorButtons = document.querySelectorAll(".operator-buttons");
 operatorButtons.forEach(button => {
     button.addEventListener("click", () => {
+        lastNumber = "";
         if (isOperator(display.textContent.slice(-1)) && display.textContent.slice(-1) !== "!") {
             display.textContent = display.textContent.slice(0, -1);
         }
@@ -79,6 +81,22 @@ const decimalPointButton = document.getElementById("decimal-point-button");
 
 const signButton = document.getElementById("sign-button");
 
+signButton.addEventListener("click", () => {
+    let displayText = display.textContent.trim();
+    if (isOperator(displayText.slice(-1))) {
+        return;
+    }
+    const elements = separateElements(displayText);
+    for (let i = elements.length - 1; i >= 0; i--) {
+        const element = elements[i];
+        if (!isOperator(element)) {
+            elements[i] = parseFloat(element) * -1;
+            display.textContent = elements.join("");
+            break;
+        }
+    }
+});
+
 const answerButton = document.getElementById("answer-button");
 answerButton.addEventListener("click", () => {
     if (displayAnswer) {
@@ -104,6 +122,8 @@ let darkMode;
 let powerButtonOn;
 let previousAnswer;
 let displayAnswer;
+let lastNumber;
+
 
 toggleColourButton();
 togglePowerButton();
