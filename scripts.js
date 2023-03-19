@@ -78,6 +78,21 @@ const additionButton = document.getElementById("addition-button");
 const subtractionButton = document.getElementById("subtraction-button");
 
 const decimalPointButton = document.getElementById("decimal-point-button");
+decimalPointButton.addEventListener("click", () => {
+    let displayText = display.textContent.trim();
+    if (displayText.slice(-1) === "." || isOperator(displayText.slice(-1))) {
+      return;
+    }
+    const elements = separateElements(displayText);
+    for (let i = elements.length - 1; i >= 0; i--) {
+      const element = elements[i];
+      if (!isOperator(element) && !element.includes(".")) {
+        elements[i] += ".";
+        display.textContent = elements.join("");
+        break;
+      }
+    }
+  });
 
 const signButton = document.getElementById("sign-button");
 
@@ -123,7 +138,6 @@ let powerButtonOn;
 let previousAnswer;
 let displayAnswer;
 let lastNumber;
-
 
 toggleColourButton();
 togglePowerButton();
@@ -210,21 +224,21 @@ function separateElements(expression) {
     const elements = [];
     let currentElement = "";
     for (const char of expression) {
-        if (isOperator(char)) {
-            if (currentElement) {
-                elements.push(currentElement);
-                currentElement = "";
-            }
-            elements.push(char);
-        } else {
-            currentElement += char;
+      if (isOperator(char)) {
+        if (currentElement) {
+          elements.push(currentElement);
+          currentElement = "";
         }
+        elements.push(char);
+      } else {
+        currentElement += char;
+      }
     }
     if (currentElement) {
-        elements.push(currentElement);
+      elements.push(currentElement);
     }
     return elements;
-};
+  };
 
 function convertInfixToPostfix(elements) {
     const operators = [];
