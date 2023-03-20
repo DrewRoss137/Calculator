@@ -2,7 +2,9 @@ const calculator = document.getElementById("calculator");
 const display = document.getElementById("display");
 const buttons = document.getElementById("buttons");
 
-const functionButtons = document.querySelectorAll(".function-buttons");
+const functionButtons = document.querySelectorAll(
+  ".function-buttons:not(#factorial-button)"
+);
 functionButtons.forEach((button) => {
   const symbol = getFunctionSymbol(button.id);
   button.addEventListener("click", () => {
@@ -51,7 +53,19 @@ operatorButtons.forEach((button) => {
 });
 
 const exponentButton = document.getElementById("exponent-button");
+
 const factorialButton = document.getElementById("factorial-button");
+factorialButton.addEventListener("click", () => {
+  const lastChar = display.textContent.slice(-1);
+  if (lastChar === "!" || isOperator(lastChar)) {
+    return;
+  }
+  if (display.textContent.trim().length === 0) {
+    return;
+  }
+  display.textContent += "!";
+});
+
 const moduloButton = document.getElementById("modulo-button");
 
 const colourButton = document.getElementById("colour-button");
