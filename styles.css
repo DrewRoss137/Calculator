@@ -75,22 +75,28 @@ h1,
 
 h1 {
   text-shadow: 0px 0px 3px rgba(255, 255, 255, 1),
-    0px 0px 3px rgba(255, 255, 255, 1), 0px 0px 3px rgba(255, 255, 255, 1),
-    0px 0px 3px rgba(255, 255, 255, 1), 0px 0px 5px rgba(0, 0, 0, 1),
-    0px 0px 5px rgba(0, 0, 0, 1), 0px 0px 5px rgba(0, 0, 0, 1),
-    0px 0px 5px rgba(0, 0, 0, 1), 0px 0px 5px rgba(0, 0, 0, 1),
-    0px 0px 5px rgba(0, 0, 0, 1), 0px 0px 5px rgba(0, 0, 0, 1),
-    0px 0px 5px rgba(0, 0, 0, 1);
+  0px 0px 3px rgba(255, 255, 255, 1),
+  0px 0px 3px rgba(255, 255, 255, 1),
+  0px 0px 3px rgba(255, 255, 255, 1),
+  0px 0px 5px rgba(0, 0, 0, 1),
+  0px 0px 5px rgba(0, 0, 0, 1),
+  0px 0px 5px rgba(0, 0, 0, 1),
+  0px 0px 5px rgba(0, 0, 0, 1),
+  0px 0px 5px rgba(0, 0, 0, 1),
+  0px 0px 5px rgba(0, 0, 0, 1),
+  0px 0px 5px rgba(0, 0, 0, 1),
+  0px 0px 5px rgba(0, 0, 0, 1);
 }
 
 #calculator {
   border-color: rgba(255, 255, 255, 0.05);
   border-image: linear-gradient(to top, rgba(0, 0, 0, 1) transparent) 1;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1), 0px 0px 10px rgba(0, 0, 0, 1),
-    inset 0px -2px 4px rgba(0, 0, 0, 0.1),
-    inset 0px 2px 4px rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1),
+  0px 0px 10px rgba(0, 0, 0, 1),
+  inset 0px -2px 4px rgba(0, 0, 0, 0.1),
+  inset 0px 2px 4px rgba(255, 255, 255, 0.1);
   gap: 32px;
-  height: 750px;
+  height: 725px;
   padding-left: 24px;
   padding-right: 24px;
   width: 550px;
