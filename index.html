@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head id="head">
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/>
-        <link rel="stylesheet" href="styles.css">
+    <head class="head" id="head">
+        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com" rel="preconnect"/>
+        <link href="styles.css" rel="stylesheet">
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <title>Calculator</title>
     </head>
-    <body>
-        <main id="main">
-            <header id="header">
-                <h1 id="header-text">Calculator</h1>
+    <body class="body" id="body">
+        <main class="main" id="main">
+            <header class="header" id="header">
+                <h1 class="header-text" id="header-text">Calculator</h1>
             </header>
-            <div id="body">
-                <div id="calculator">
-                    <div id="display"></div>
-                    <div id="buttons">
+            <div class="container" id="container">
+                <div class="calculator" id="calculator">
+                    <div class="display" id="display"></div>
+                    <div class="buttons" id="buttons">
                         <button class="function-buttons" id="exponent-button"><i>n</i><sup>x</sup></button>
                         <button class="function-buttons" id="factorial-button"><i>n</i>!</button>
                         <button class="function-buttons" id="modulo-button">%</button>
@@ -47,9 +47,9 @@
                     </div>
                 </div>
             </div>
-            <footer id="footer">
-                <a href="https://github.com/DrewRoss137" id="github-logo" rel="noopener" target="_blank" >
-                    <img src="github-logo.svg" alt="GitHub Logo" id="github-logo">
+            <footer class="footer" id="footer">
+                <a class="github-logo "id="github-logo" href="https://github.com/DrewRoss137" rel="noopener" target="_blank">
+                    <img alt="GitHub Logo" class="github-logo-svg" id="github-logo-svg" src="github-logo.svg">
                 </a>
             </footer>  
         </main>
