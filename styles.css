@@ -75,26 +75,20 @@ h1,
 
 h1 {
   text-shadow: 0px 0px 3px rgba(255, 255, 255, 1),
-  0px 0px 3px rgba(255, 255, 255, 1),
-  0px 0px 3px rgba(255, 255, 255, 1),
-  0px 0px 3px rgba(255, 255, 255, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1);
+    0px 0px 3px rgba(255, 255, 255, 1), 0px 0px 3px rgba(255, 255, 255, 1),
+    0px 0px 3px rgba(255, 255, 255, 1), 0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1), 0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1), 0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1), 0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1);
 }
 
 #calculator {
   border-color: rgba(255, 255, 255, 0.05);
   border-image: linear-gradient(to top, rgba(0, 0, 0, 1) transparent) 1;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1),
-  0px 0px 10px rgba(0, 0, 0, 1),
-  inset 0px -2px 4px rgba(0, 0, 0, 0.1),
-  inset 0px 2px 4px rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1), 0px 0px 10px rgba(0, 0, 0, 1),
+    inset 0px -2px 4px rgba(0, 0, 0, 0.1),
+    inset 0px 2px 4px rgba(255, 255, 255, 0.1);
   gap: 32px;
   height: 725px;
   padding-left: 24px;
@@ -125,17 +119,12 @@ button {
     rgba(0, 0, 0, 1)
   );
   text-shadow: 0px 0px 3px rgba(255, 255, 255, 1),
-  0px 0px 3px rgba(255, 255, 255, 1),
-  0px 0px 3px rgba(255, 255, 255, 1),
-  0px 0px 3px rgba(255, 255, 255, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1),
-  0px 0px 5px rgba(0, 0, 0, 1);
+    0px 0px 3px rgba(255, 255, 255, 1), 0px 0px 3px rgba(255, 255, 255, 1),
+    0px 0px 3px rgba(255, 255, 255, 1), 0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1), 0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1), 0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1), 0px 0px 5px rgba(0, 0, 0, 1),
+    0px 0px 5px rgba(0, 0, 0, 1);
 }
 
 .light-mode {
@@ -145,10 +134,8 @@ button {
     rgba(200, 200, 200, 1)
   );
   color: rgba(0, 0, 0, 1);
-  text-shadow: 0px 0px 3px rgba(0, 0, 0, 1),
-  0px 0px 3px rgba(0, 0, 0, 1),
-  0px 0px 3px rgba(0, 0, 0, 1),
-  0px 0px 3px rgba(0, 0, 0, 1);
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 1), 0px 0px 3px rgba(0, 0, 0, 1),
+    0px 0px 3px rgba(0, 0, 0, 1), 0px 0px 3px rgba(0, 0, 0, 1);
 }
 
 #display {
@@ -181,12 +168,9 @@ button {
   border-radius: 10px;
   border-style: solid;
   border-width: 2px;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 1),
-  0px 0px 3px rgba(0, 0, 0, 1),
-  0px 0px 3px rgba(0, 0, 0, 1),
-  0px 0px 3px rgba(0, 0, 0, 1),
-  inset 0px 0px 3px rgba(0, 0, 0, 0.5),
-  inset 0px 0px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 1), 0px 0px 3px rgba(0, 0, 0, 1),
+    0px 0px 3px rgba(0, 0, 0, 1), 0px 0px 3px rgba(0, 0, 0, 1),
+    inset 0px 0px 3px rgba(0, 0, 0, 0.5), inset 0px 0px 3px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   font-size: 25px;
   font-weight: bolder;
@@ -197,12 +181,9 @@ button {
 }
 
 button:active {
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 1),
-  0px 0px 4px rgba(0, 0, 0, 1),
-  0px 0px 4px rgba(0, 0, 0, 1),
-  0px 0px 4px rgba(0, 0, 0, 1),
-  inset 0px 0px 5px rgba(0, 0, 0, 1),
-  inset 0px 0px 5px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 1), 0px 0px 4px rgba(0, 0, 0, 1),
+    0px 0px 4px rgba(0, 0, 0, 1), 0px 0px 4px rgba(0, 0, 0, 1),
+    inset 0px 0px 5px rgba(0, 0, 0, 1), inset 0px 0px 5px rgba(0, 0, 0, 1);
   transform: translateY(2px);
 }
 
@@ -221,13 +202,10 @@ button:active {
 .modifier-buttons,
 .answer-buttons {
   color: rgba(0, 0, 0, 1);
-  text-shadow: 0px 0px 3px rgba(0, 0, 0, 1),
-  0px 0px 3px rgba(0, 0, 0, 1),
-  0px 0px 3px rgba(0, 0, 0, 1),
-  0px 0px 3px rgba(0, 0, 0, 1),
-  0px 0px 3px rgba(0, 0, 0, 1),
-  0px 0px 3px rgba(0, 0, 0, 1),
-  0px 0px 3px rgba(0, 0, 0, 1);
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 1), 0px 0px 3px rgba(0, 0, 0, 1),
+    0px 0px 3px rgba(0, 0, 0, 1), 0px 0px 3px rgba(0, 0, 0, 1),
+    0px 0px 3px rgba(0, 0, 0, 1), 0px 0px 3px rgba(0, 0, 0, 1),
+    0px 0px 3px rgba(0, 0, 0, 1);
 }
 
 #colour-button {
