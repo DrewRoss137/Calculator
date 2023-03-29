@@ -1,10 +1,23 @@
 const calculator = document.getElementById("calculator");
 const display = document.getElementById("display");
 const buttons = document.getElementById("buttons");
-
 const functionButtons = document.querySelectorAll(
   ".function-buttons:not(#factorial-button)"
 );
+const exponentButton = document.getElementById("exponent-button");
+const factorialButton = document.getElementById("factorial-button");
+const moduloButton = document.getElementById("modulo-button");
+const colourButton = document.getElementById("colour-button");
+const powerButton = document.getElementById("power-button");
+const digitButtons = document.querySelectorAll(".digit-buttons");
+const operatorButtons = document.querySelectorAll(".operator-buttons");
+const deleteButton = document.getElementById("delete-button");
+const allClearButton = document.getElementById("all-clear-button");
+const decimalPointButton = document.getElementById("decimal-point-button");
+const signButton = document.getElementById("sign-button");
+const answerButton = document.getElementById("answer-button");
+const equalsButton = document.getElementById("equals-button");
+
 functionButtons.forEach((button) => {
   const symbol = getFunctionSymbol(button.id);
   button.addEventListener("click", () => {
@@ -24,7 +37,21 @@ functionButtons.forEach((button) => {
   });
 });
 
-const digitButtons = document.querySelectorAll(".digit-buttons");
+factorialButton.addEventListener("click", () => {
+  const lastChar = display.textContent.slice(-1);
+  if (lastChar === "!" || isOperator(lastChar)) {
+    return;
+  }
+  if (display.textContent.trim().length === 0) {
+    return;
+  }
+  display.textContent += "!";
+});
+
+colourButton.addEventListener("click", toggleColourButton);
+
+powerButton.addEventListener("click", togglePowerButton);
+
 digitButtons.forEach((button) => {
   button.addEventListener("click", () => {
     if (display.textContent.slice(-1) === "!") {
@@ -35,7 +62,6 @@ digitButtons.forEach((button) => {
   });
 });
 
-const operatorButtons = document.querySelectorAll(".operator-buttons");
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
     lastNumber = "";
@@ -52,39 +78,14 @@ operatorButtons.forEach((button) => {
   });
 });
 
-const exponentButton = document.getElementById("exponent-button");
-
-const factorialButton = document.getElementById("factorial-button");
-factorialButton.addEventListener("click", () => {
-  const lastChar = display.textContent.slice(-1);
-  if (lastChar === "!" || isOperator(lastChar)) {
-    return;
-  }
-  if (display.textContent.trim().length === 0) {
-    return;
-  }
-  display.textContent += "!";
-});
-
-const moduloButton = document.getElementById("modulo-button");
-
-const colourButton = document.getElementById("colour-button");
-colourButton.addEventListener("click", toggleColourButton);
-
-const powerButton = document.getElementById("power-button");
-powerButton.addEventListener("click", togglePowerButton);
-
-const deleteButton = document.getElementById("delete-button");
 deleteButton.addEventListener("click", () => {
   display.textContent = display.textContent.slice(0, -1);
 });
 
-const allClearButton = document.getElementById("all-clear-button");
 allClearButton.addEventListener("click", () => {
   display.textContent = "";
 });
 
-const decimalPointButton = document.getElementById("decimal-point-button");
 decimalPointButton.addEventListener("click", () => {
   let displayText = display.textContent.trim();
   if (displayText.slice(-1) === "." || isOperator(displayText.slice(-1))) {
@@ -101,7 +102,6 @@ decimalPointButton.addEventListener("click", () => {
   }
 });
 
-const signButton = document.getElementById("sign-button");
 signButton.addEventListener("click", () => {
   let displayText = display.textContent.trim();
   if (isOperator(displayText.slice(-1))) {
@@ -118,7 +118,6 @@ signButton.addEventListener("click", () => {
   }
 });
 
-const answerButton = document.getElementById("answer-button");
 answerButton.addEventListener("click", () => {
   if (displayAnswer) {
     display.textContent = "";
@@ -129,7 +128,6 @@ answerButton.addEventListener("click", () => {
   }
 });
 
-const equalsButton = document.getElementById("equals-button");
 equalsButton.addEventListener("click", () => {
   const result = calculateExpression(display.textContent);
   display.textContent = result;
