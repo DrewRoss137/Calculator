@@ -56,6 +56,14 @@ button,
 footer {
   align-items: center;
   display: flex;
+}
+
+#container,
+header,
+#calculator,
+#display,
+#buttons,
+button {
   justify-content: center;
 }
 
@@ -283,10 +291,10 @@ footer {
 
 #github-logo {
   filter: invert(3%);
-  height: 1.25%;
+  height: 24.5px;
   padding-bottom: 3px;
   padding-left: 0px;
   padding-right: 3px;
   padding-top: 0px;
-  width: 1.25%;
+  width: 24px;
 }
